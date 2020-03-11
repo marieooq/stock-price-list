@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { any } from 'prop-types';
-
 interface RsponseElement {
   symbol: string;
   exchange: string;
@@ -22,12 +20,13 @@ interface List {
 
 const Test = () => {
   const [symbol, setSymbol] = useState<[]>([]);
+  const accessToken = process.env.REACT_APP_ACCESSA_TOKEN;
 
   useEffect((): void => {
     const fetchAllSymbols = async () => {
       try {
         const res = await axios.get(
-          'https://cloud.iexapis.com/stable/ref-data/symbols?token=pk_1f9b377e6b664b4684333c106015e21d'
+          `https://cloud.iexapis.com/stable/ref-data/symbols?token=${accessToken}`
         );
         const items = res.data;
         const symbols = items.map((val: RsponseElement) => {
