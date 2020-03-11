@@ -24,7 +24,6 @@ class Api {
         `https://cloud.iexapis.com/stable/ref-data/symbols?token=${this.accessToken}`
       );
       const items = res.data;
-      console.log(items);
       const symbols = items.map((val: RsponseElement) => {
         return val.symbol;
       });
@@ -47,6 +46,19 @@ class Api {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  getCompanyDescription = async (
+    symbol: RsponseElement['symbol']
+  ): Promise<string> => {
+    const lowerCaseSymbol = symbol.toLowerCase();
+
+    const {
+      data: { description }
+    } = await axios.get(
+      `https://cloud.iexapis.com/stable/stock/${lowerCaseSymbol}/company?token=${this.accessToken}`
+    );
+    return description;
   };
 }
 

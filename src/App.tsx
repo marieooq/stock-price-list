@@ -8,7 +8,14 @@ import './App.css';
 
 const App: React.FC = () => {
   const apiInstance = new api();
-  console.log(apiInstance.getAllSymbols());
+  const [synmbol, setSynmbol] = React.useState('');
+  React.useEffect(() => {
+    const callApi = async () => {
+      const description = await apiInstance.getCompanyDescription('AAPL');
+      setSynmbol(description);
+    };
+    callApi();
+  });
   return (
     <>
       <div className="app_container">
