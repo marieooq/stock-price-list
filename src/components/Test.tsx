@@ -16,8 +16,12 @@ interface RsponseElement {
   cik: string;
 }
 
+interface List {
+  list: Node;
+}
+
 const Test = () => {
-  const [symbol, setSymbol] = useState<string>('');
+  const [symbol, setSymbol] = useState<[]>([]);
 
   useEffect((): void => {
     const fetchAllSymbols = async () => {
@@ -29,6 +33,7 @@ const Test = () => {
         const symbols = items.map((val: RsponseElement) => {
           return val.symbol;
         });
+        console.log(symbols);
         setSymbol(symbols);
       } catch (error) {
         console.log(error);
@@ -38,7 +43,11 @@ const Test = () => {
     fetchAllSymbols();
   }, []);
 
-  return <>{symbol}</>;
+  const symbolList = symbol.map(val => {
+    return <li>{val}</li>;
+  });
+
+  return <ul>{symbolList}</ul>;
 };
 
 export default Test;
