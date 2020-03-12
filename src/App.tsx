@@ -20,7 +20,7 @@ const App: React.FC = () => {
   return (
     <>
       <div className="app_container">
-        <SelectSection />
+        <SelectSection symbolProps={symbols} />
         <Symbol />
         <StockPrice />
         <Description />

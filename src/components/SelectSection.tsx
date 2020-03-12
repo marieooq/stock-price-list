@@ -30,9 +30,10 @@ const menu = (
   </Menu>
 );
 
-const SelectSection: React.FC = () => {
+const SelectSection: React.FC<Props> = props => {
   return (
     <>
+      <div>{props.symbolProps}</div>
       <Dropdown overlay={menu}>
         <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
           Select the symbol <DownOutlined />
@@ -43,3 +44,7 @@ const SelectSection: React.FC = () => {
 };
 
 export default SelectSection;
+
+interface Props {
+  symbolProps: string[];
+}
