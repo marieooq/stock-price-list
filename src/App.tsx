@@ -15,7 +15,6 @@ const App: React.FC = () => {
       setSynmbol(symbolData);
     };
     callApi();
-    console.log(symbols);
   }, []);
   return (
     <>

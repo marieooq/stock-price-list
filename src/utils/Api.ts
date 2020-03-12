@@ -32,29 +32,8 @@ class Api {
         }
       });
     }
-    console.log(symbolData);
-
     return symbolData;
   };
-
-  // getSymbolsByThousand = async (): Promise<[]> => {
-  //   const { data } = await axios.get(
-  //     `https://cloud.iexapis.com/stable/ref-data/symbols?token=${this.accessToken}`
-  //   );
-
-  //   let symbolData: ResponseElement['symbol'][] = [];
-  //   for (const item of data) {
-  //     Object.keys(item).forEach(val => {
-  //       if (val === 'symbol') {
-  //         symbolData.push(item[val]);
-  //       }
-  //     });
-  //   }
-
-  //   console.log(symbolData);
-
-  //   return data;
-  // };
 
   getPrice = async (symbol: ResponseElement['symbol']): Promise<string> => {
     const lowerCaseSymbol = symbol.toLowerCase();
