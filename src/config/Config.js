@@ -1,5 +1,5 @@
 const Config = {
-  accessToken: 'pk_1f9b377e6b664b4684333c106015e21d'
+  accessToken: 'pk_b7d96d81b4514020a059a28e440115ce'
 };
 
 export default Config;
