@@ -8,13 +8,14 @@ import './App.css';
 
 const App: React.FC = () => {
   const apiInstance = new api();
-  const [synmbol, setSynmbol] = React.useState([]);
+  const [symbols, setSynmbol] = React.useState<string[]>([]);
   React.useEffect(() => {
     const callApi = async () => {
-      const description = await apiInstance.getAllSymbols();
-      setSynmbol(description);
+      const symbolData: string[] = await apiInstance.getAllSymbols();
+      setSynmbol(symbolData);
     };
     callApi();
+    console.log(symbols);
   }, []);
   return (
     <>

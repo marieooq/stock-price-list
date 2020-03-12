@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
+import { string } from 'prop-types';
 
 interface ResponseElement {
   symbol: string;
@@ -18,35 +19,22 @@ interface ResponseElement {
 class Api {
   accessToken = process.env.REACT_APP_ACCESSA_TOKEN;
 
-  getAllSymbols = async (): Promise<[]> => {
-    console.log(this.accessToken);
-    try {
-      const { data } = await axios.get(
-        `https://cloud.iexapis.com/stable/ref-data/symbols?token=${this.accessToken}`
-      );
-      return data;
-    } catch (error) {
-      console.log(error);
-      return error;
+  getAllSymbols = async (): Promise<string[]> => {
+    const { data } = await axios.get(
+      `https://cloud.iexapis.com/stable/ref-data/symbols?token=${this.accessToken}`
+    );
+
+    let symbolData: ResponseElement['symbol'][] = [];
+    for (const item of data) {
+      Object.keys(item).forEach(val => {
+        if (val === 'symbol') {
+          symbolData.push(item[val]);
+        }
+      });
     }
+    console.log(symbolData);
 
-    // const { data } = await axios.get(
-    //   `https://cloud.iexapis.com/stable/ref-data/symbols?token=${this.accessToken}`
-    // );
-
-    // let symbolData: ResponseElement['symbol'][] = [];
-    // for (const item of data) {
-    //   Object.keys(item).forEach(val => {
-    //     if (val === 'symbol') {
-    //       symbolData.push(item[val]);
-    //     }
-    //   });
-    // }
-
-    // console.log('aaa');
-    // console.log(symbolData);
-
-    // return data;
+    return symbolData;
   };
 
   // getSymbolsByThousand = async (): Promise<[]> => {
