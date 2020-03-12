@@ -1,28 +1,22 @@
 import React from 'react';
-import { Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
+import { useEffect } from 'react';
 
 const SelectSection: React.FC<Props> = props => {
-  // const menuItems = props.symbolProps.map((val, index) => {
-  //   console.log(val);
-  //   return <Menu.Item key={index}>{val}</Menu.Item>;
-  // });
-  const arr = ['one', 'two', 'three', 'four', 'five'];
+  const [inputValue, setInputValue] = React.useState('');
 
-  const menuItems = arr.map((val, index) => {
-    return <Menu.Item key={index}>{val}</Menu.Item>;
-  });
-  const menu = <Menu>{menuItems}</Menu>;
-  console.log(menu);
+  React.useEffect(() => {}, []);
+
+  const handle = (e: any) => {
+    setInputValue(e.target.value);
+    console.log(e.target.value);
+  };
 
   return (
-    <>
-      <Dropdown overlay={menu}>
-        <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-          Select the symbol <DownOutlined />
-        </a>
-      </Dropdown>
-    </>
+    <Input
+      placeholder="Please type a symbol that you're looking for. ex)APPL"
+      onChange={handle}
+    />
   );
 };
 
