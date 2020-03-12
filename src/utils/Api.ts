@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 
-interface RsponseElement {
+interface ResponseElement {
   symbol: string;
   exchange: string;
   name: string;
@@ -18,38 +18,68 @@ interface RsponseElement {
 class Api {
   accessToken = process.env.REACT_APP_ACCESSA_TOKEN;
 
-  getAllSymbols = async () => {
+  getAllSymbols = async (): Promise<[]> => {
+    console.log(this.accessToken);
     try {
-      const res = await axios.get(
+      const { data } = await axios.get(
         `https://cloud.iexapis.com/stable/ref-data/symbols?token=${this.accessToken}`
       );
-      const items = res.data;
-      const symbols = items.map((val: RsponseElement) => {
-        return val.symbol;
-      });
-      return symbols;
+      return data;
     } catch (error) {
       console.log(error);
+      return error;
     }
+
+    // const { data } = await axios.get(
+    //   `https://cloud.iexapis.com/stable/ref-data/symbols?token=${this.accessToken}`
+    // );
+
+    // let symbolData: ResponseElement['symbol'][] = [];
+    // for (const item of data) {
+    //   Object.keys(item).forEach(val => {
+    //     if (val === 'symbol') {
+    //       symbolData.push(item[val]);
+    //     }
+    //   });
+    // }
+
+    // console.log('aaa');
+    // console.log(symbolData);
+
+    // return data;
   };
 
-  getPrice = async (symbol: RsponseElement['symbol']) => {
+  // getSymbolsByThousand = async (): Promise<[]> => {
+  //   const { data } = await axios.get(
+  //     `https://cloud.iexapis.com/stable/ref-data/symbols?token=${this.accessToken}`
+  //   );
+
+  //   let symbolData: ResponseElement['symbol'][] = [];
+  //   for (const item of data) {
+  //     Object.keys(item).forEach(val => {
+  //       if (val === 'symbol') {
+  //         symbolData.push(item[val]);
+  //       }
+  //     });
+  //   }
+
+  //   console.log(symbolData);
+
+  //   return data;
+  // };
+
+  getPrice = async (symbol: ResponseElement['symbol']): Promise<string> => {
     const lowerCaseSymbol = symbol.toLowerCase();
 
-    try {
-      const res = await axios.get(
-        `https://cloud.iexapis.com/stable/stock/${lowerCaseSymbol}/quote/latestPrice?token=${this.accessToken}`
-      );
-      const currentPrice = res.data;
-      console.log(currentPrice);
-      return currentPrice;
-    } catch (error) {
-      console.log(error);
-    }
+    const { data } = await axios.get(
+      `https://cloud.iexapis.com/stable/stock/${lowerCaseSymbol}/quote/latestPrice?token=${this.accessToken}`
+    );
+
+    return data;
   };
 
   getCompanyDescription = async (
-    symbol: RsponseElement['symbol']
+    symbol: ResponseElement['symbol']
   ): Promise<string> => {
     const lowerCaseSymbol = symbol.toLowerCase();
 
