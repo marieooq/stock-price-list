@@ -7,19 +7,25 @@ import api from './utils/Api';
 import './App.css';
 
 const App: React.FC = () => {
-  const apiInstance = new api();
-  const [symbols, setSynmbol] = React.useState<string[]>([]);
-  React.useEffect(() => {
-    const callApi = async () => {
-      const symbolData: string[] = await apiInstance.getAllSymbols();
-      setSynmbol(symbolData);
-    };
-    callApi();
-  }, []);
+  const [inputValue, setInputValue] = React.useState<string>('');
+
+  // const apiInstance = new api();
+  // const [symbols, setSynmbol] = React.useState<string[]>([]);
+  // React.useEffect(() => {
+  //   const callApi = async () => {
+  //     const symbolData: string[] = await apiInstance.getAllSymbols();
+  //     setSynmbol(symbolData);
+  //   };
+  //   callApi();
+  // }, []);
+
+  const handleInput = (e: any): void => {
+    setInputValue(e.target.value);
+  };
   return (
     <>
       <div className="app_container">
-        <SelectSection symbolProps={symbols} />
+        <SelectSection handleFunc={handleInput} />
         <Symbol />
         <StockPrice />
         <Description />

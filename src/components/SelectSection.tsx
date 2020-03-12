@@ -15,7 +15,7 @@ const SelectSection: React.FC<Props> = props => {
   return (
     <Input
       placeholder="Please type a symbol that you're looking for. ex)APPL"
-      onChange={handle}
+      onChange={props.handleFunc}
     />
   );
 };
@@ -23,5 +23,5 @@ const SelectSection: React.FC<Props> = props => {
 export default SelectSection;
 
 interface Props {
-  symbolProps: string[];
+  handleFunc: (e: any) => void;
 }
