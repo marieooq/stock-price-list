@@ -7,7 +7,7 @@ const InputForm: React.FC<Props> = props => {
   return (
     <form onSubmit={props.onSubmitFunc}>
       <Search
-        placeholder="Please enter a symbol. ex) AAPL"
+        placeholder="Please enter a symbol. ex) AAPL, aapl"
         onChange={props.onChangeFunc}
         enterButton
       />

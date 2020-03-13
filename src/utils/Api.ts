@@ -6,12 +6,10 @@ class Api {
   getPrice = async (symbol: ResponseElement['symbol']): Promise<string> => {
     // sconsole.log('here');
     const lowerCaseSymbol = symbol.toLowerCase();
-    console.log(lowerCaseSymbol);
 
     const { data } = await axios.get(
       `https://cloud.iexapis.com/stable/stock/${lowerCaseSymbol}/quote/latestPrice?token=${this.accessToken}`
     );
-    console.log(data);
 
     return data;
   };

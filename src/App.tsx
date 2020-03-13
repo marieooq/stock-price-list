@@ -65,21 +65,22 @@ const App: React.FC = () => {
     setInputSymbol(e.target.value);
   };
   return (
-    <div className="app_container ">
-      <br />
-      <br />
-      <InputForm onChangeFunc={handleInput} onSubmitFunc={handleSubmit} />
-      <br />
-      <br />
-      {/* {loading ? <img src={loadingImg} alt="loading" /> : <></>} */}
+    <>
       <Loading loadingState={loading} />
+      <div className="app_container ">
+        <br />
+        <br />
+        <InputForm onChangeFunc={handleInput} onSubmitFunc={handleSubmit} />
+        <br />
+        <br />
 
-      <Symbol propsSymbol={matchedSymbol} />
+        <Symbol propsSymbol={matchedSymbol} />
 
-      <StockPrice propsPrice={price} />
+        <StockPrice propsPrice={price} />
 
-      <Description propsDescription={description} />
-    </div>
+        <Description propsDescription={description} />
+      </div>
+    </>
   );
 };
 
