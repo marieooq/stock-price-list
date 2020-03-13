@@ -5,6 +5,24 @@
 }
 
 .app_container {
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 480px) {
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .app_container {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .app_container {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
 }
