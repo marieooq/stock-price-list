@@ -19,21 +19,38 @@ interface ResponseElement {
 class Api {
   accessToken = process.env.REACT_APP_ACCESSA_TOKEN;
 
-  getAllSymbols = async (): Promise<string[]> => {
-    const { data } = await axios.get(
-      `https://cloud.iexapis.com/stable/ref-data/symbols?token=${this.accessToken}`
-    );
+  // getAllSymbols = async (): Promise<string[]> => {
+  //   const { data } = await axios.get(
+  //     `https://cloud.iexapis.com/stable/ref-data/iex/symbols?token=${this.accessToken}`
+  //   );
 
-    let symbolData: ResponseElement['symbol'][] = [];
-    for (const item of data) {
-      Object.keys(item).forEach(val => {
-        if (val === 'symbol') {
-          symbolData.push(item[val]);
-        }
-      });
-    }
-    return symbolData;
-  };
+  //   const inputSymbol = 'AAL'
+  //   let symbolData: ResponseElement['symbol'][] = [];
+  //   for (const item of data) {
+  //     Object.keys(item).forEach(val => {
+  //       if (val === 'symbol') {
+  //         symbolData.push(item[val]);
+  //       }
+  //     });
+  //   }
+  //   return symbolData;
+  // };
+
+  // getAllSymbols = async (): Promise<string[]> => {
+  //   const { data } = await axios.get(
+  //     `https://cloud.iexapis.com/stable/ref-data/symbols?token=${this.accessToken}`
+  //   );
+
+  //   let symbolData: ResponseElement['symbol'][] = [];
+  //   for (const item of data) {
+  //     Object.keys(item).forEach(val => {
+  //       if (val === 'symbol') {
+  //         symbolData.push(item[val]);
+  //       }
+  //     });
+  //   }
+  //   return symbolData;
+  // };
 
   getPrice = async (symbol: ResponseElement['symbol']): Promise<string> => {
     const lowerCaseSymbol = symbol.toLowerCase();
@@ -60,3 +77,7 @@ class Api {
 }
 
 export default Api;
+
+interface Props {
+  handleFunc: (e: any) => void;
+}

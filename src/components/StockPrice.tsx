@@ -1,8 +1,12 @@
 import React from 'react';
 import { Card } from 'antd';
 
-const StockPrice = () => {
-  return <Card title="Current Stock Price">170.92USD</Card>;
+const StockPrice: React.FC<Props> = props => {
+  return <Card title="Current Stock Price">{props.propsPrice}</Card>;
 };
 
 export default StockPrice;
+
+interface Props {
+  propsPrice: string;
+}

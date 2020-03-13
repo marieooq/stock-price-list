@@ -7,11 +7,6 @@ const SelectSection: React.FC<Props> = props => {
 
   React.useEffect(() => {}, []);
 
-  const handle = (e: any) => {
-    setInputValue(e.target.value);
-    console.log(e.target.value);
-  };
-
   return (
     <Input
       placeholder="Please type a symbol that you're looking for. ex)APPL"
