@@ -29,9 +29,6 @@ const App: React.FC = () => {
   const handleSubmit = async (e: any): Promise<void> => {
     e.preventDefault();
     try {
-      //set symbol that matches api
-      setMatchedSymbol(inputSymbol);
-
       //get price and set it
       const priceFromApi = await getPrice(inputSymbol);
       setPrice(priceFromApi);
@@ -39,6 +36,9 @@ const App: React.FC = () => {
       //get description and set it
       const descriptionFromApi = await getDescription(inputSymbol);
       setDescription(descriptionFromApi);
+
+      //set symbol that matches api
+      setMatchedSymbol(inputSymbol);
     } catch (error) {
       if (error.response.status === 404) {
         window.alert('not found this symbol');
