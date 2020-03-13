@@ -12,9 +12,9 @@ const App: React.FC = () => {
   // const [symbols, setSynmbol] = React.useState<string[]>([]);
   const apiInstance = new api();
 
-  const getPrice = async (symbol: string) => {
+  const getPrice = async (symbol: string): Promise<string> => {
     const priceFromApi: string = await apiInstance.getPrice(symbol);
-    setPrice(priceFromApi);
+    return priceFromApi;
   };
 
   // React.useEffect(() => {
@@ -25,12 +25,24 @@ const App: React.FC = () => {
   //   getPrice();
   // }, []);
 
-  const handleSubmit = (e: any): void => {
+  const handleSubmit = async (e: any): Promise<void> => {
     e.preventDefault();
-    getPrice(inputSymbol);
+    try {
+      const priceFromApi = await getPrice(inputSymbol);
+      setPrice(priceFromApi);
+
+      // Symbol
+      // Description
+    } catch (err) {
+      if (err.response.status === 404) {
+        window.alert('not found this symbol');
+      } else {
+        window.alert('An error occured. Please try again.');
+      }
+    }
   };
 
-  const handleInput = (e: any): void => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     console.log(e.target.value);
     setInputSymbol(e.target.value);
   };

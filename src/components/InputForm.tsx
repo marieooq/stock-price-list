@@ -13,6 +13,7 @@ const InputForm: React.FC<Props> = props => {
         placeholder="Please type a symbol that you're looking for. ex)APPL"
         onChange={props.onChangeFunc}
       />
+      <button type="submit">search</button>
     </form>
   );
 };
