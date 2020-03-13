@@ -1,20 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios, { AxiosResponse } from 'axios';
-import { string } from 'prop-types';
-
-interface ResponseElement {
-  symbol: string;
-  exchange: string;
-  name: string;
-  date: string;
-  type: string;
-  iexId: string;
-  region: string;
-  currency: string;
-  isEnabled: boolean;
-  figi: string;
-  cik: string;
-}
+import axios from 'axios';
 
 class Api {
   accessToken = process.env.REACT_APP_ACCESSA_TOKEN;
@@ -50,4 +34,18 @@ export default Api;
 
 interface Props {
   handleFunc: (e: any) => void;
+}
+
+interface ResponseElement {
+  symbol: string;
+  exchange: string;
+  name: string;
+  date: string;
+  type: string;
+  iexId: string;
+  region: string;
+  currency: string;
+  isEnabled: boolean;
+  figi: string;
+  cik: string;
 }

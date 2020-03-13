@@ -4,6 +4,7 @@ import Symbol from './components/Symbol';
 import StockPrice from './components/StockPrice';
 import Description from './components/Description';
 import api from './utils/Api';
+import { Row, Col } from 'antd';
 import './App.css';
 
 const App: React.FC = () => {
@@ -31,7 +32,8 @@ const App: React.FC = () => {
     try {
       //get price and set it
       const priceFromApi = await getPrice(inputSymbol);
-      setPrice(priceFromApi);
+      const priceUSD = `${priceFromApi} USD`;
+      setPrice(priceUSD);
 
       //get description and set it
       const descriptionFromApi = await getDescription(inputSymbol);
@@ -49,19 +51,22 @@ const App: React.FC = () => {
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log('here');
-    console.log(e.target.value);
     setInputSymbol(e.target.value);
   };
   return (
-    <>
-      <div className="app_container">
-        <InputForm onChangeFunc={handleInput} onSubmitFunc={handleSubmit} />
-        <Symbol propsSymbol={matchedSymbol} />
-        <StockPrice propsPrice={price} />
-        <Description propsDescription={description} />
-      </div>
-    </>
+    <div className="app_container ">
+      <br />
+      <br />
+      <InputForm onChangeFunc={handleInput} onSubmitFunc={handleSubmit} />
+      <br />
+      <br />
+
+      <Symbol propsSymbol={matchedSymbol} />
+
+      <StockPrice propsPrice={price} />
+
+      <Description propsDescription={description} />
+    </div>
   );
 };
 

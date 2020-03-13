@@ -1,18 +1,13 @@
 import React from 'react';
 import { Input } from 'antd';
-import { useEffect } from 'react';
 
 const { Search } = Input;
 
 const InputForm: React.FC<Props> = props => {
-  const [inputValue, setInputValue] = React.useState('');
-
-  React.useEffect(() => {}, []);
-
   return (
     <form onSubmit={props.onSubmitFunc}>
       <Search
-        placeholder="Please enter a symbol."
+        placeholder="Please enter a symbol. ex) AAPL"
         onChange={props.onChangeFunc}
         enterButton
       />
