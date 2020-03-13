@@ -5,7 +5,7 @@
 This is a simple SPA application that enables to display the stock symbol, the latest price and the desctiption.<br>
 Once you type in the symbol and hit the enter or press the search button, these information show up.
 
-## ⚠:warning: Note
+## :warning: Note
 
 This application uses [IEX Cloud API](https://iexcloud.io/).You need to sign up for a free account to access this API.<br>
 Please make sure to create .env file in the root and write your access token like below.
