@@ -2,6 +2,8 @@ import React from 'react';
 import { Input } from 'antd';
 import { useEffect } from 'react';
 
+const { Search } = Input;
+
 const InputForm: React.FC<Props> = props => {
   const [inputValue, setInputValue] = React.useState('');
 
@@ -9,11 +11,11 @@ const InputForm: React.FC<Props> = props => {
 
   return (
     <form onSubmit={props.onSubmitFunc}>
-      <Input
-        placeholder="Please type a symbol that you're looking for. ex)APPL"
+      <Search
+        placeholder="Please enter a symbol."
         onChange={props.onChangeFunc}
+        enterButton
       />
-      <button type="submit">search</button>
     </form>
   );
 };

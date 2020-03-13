@@ -49,6 +49,7 @@ const App: React.FC = () => {
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    console.log('here');
     console.log(e.target.value);
     setInputSymbol(e.target.value);
   };
