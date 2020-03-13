@@ -1,44 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Stock Price List
 
-## Available Scripts
+## :book: How to use
 
-In the project directory, you can run:
+This is a simple SPA application that enables to display the stock symbol, the latest price and the desctiption.<br>
+Once you type in the symbol and hit the enter or press the search button, these information show up.
 
-### `yarn start`
+## ⚠:warning: Note
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This application uses [IEX Cloud API](https://iexcloud.io/).You need to sign up for a free account to access this API.<br>
+Please make sure to create .env file in the root and write your access token like below.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## :computer: Stack
 
-### `yarn test`
+- React
+- TypeScript
+- [Ant Design](https://ant.design/)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :thumbsup: What I worked on
 
-### `yarn build`
+- Use TypeScript
+  I chose to use TypeScript for production-level quality, considering the case this app will scale up in the future.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Use Ant Design
+  To make the design clean and easy to use, I used Ant Design, which enables me to save time for design.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Add the search feature
+  To fulfill the better user experience I add the search feature.
