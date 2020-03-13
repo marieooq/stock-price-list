@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectSection from './components/SelectSection';
+import InputForm from './components/InputForm';
 import Symbol from './components/Symbol';
 import StockPrice from './components/StockPrice';
 import Description from './components/Description';
@@ -25,6 +25,11 @@ const App: React.FC = () => {
   //   getPrice();
   // }, []);
 
+  const handleSubmit = (e: any): void => {
+    e.preventDefault();
+    getPrice(inputSymbol);
+  };
+
   const handleInput = (e: any): void => {
     console.log(e.target.value);
     setInputSymbol(e.target.value);
@@ -32,7 +37,7 @@ const App: React.FC = () => {
   return (
     <>
       <div className="app_container">
-        <SelectSection handleFunc={handleInput} />
+        <InputForm onChangeFunc={handleInput} onSubmitFunc={handleSubmit} />
         <Symbol />
         <StockPrice propsPrice={price} />
         <Description />
