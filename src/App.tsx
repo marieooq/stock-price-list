@@ -8,8 +8,10 @@ import './App.css';
 
 const App: React.FC = () => {
   const [inputSymbol, setInputSymbol] = React.useState<string>('');
+  const [matchedSymbol, setMatchedSymbol] = React.useState<string>('');
   const [price, setPrice] = React.useState<string>('');
-  // const [symbols, setSynmbol] = React.useState<string[]>([]);
+  const [description, setDescription] = React.useState<string>('');
+
   const apiInstance = new api();
 
   const getPrice = async (symbol: string): Promise<string> => {
@@ -17,24 +19,28 @@ const App: React.FC = () => {
     return priceFromApi;
   };
 
-  // React.useEffect(() => {
-  //   const getPrice = async () => {
-  //     const priceFromApi: string = await apiInstance.getPrice(inputSymbol);
-  //     setPrice(priceFromApi);
-  //   };
-  //   getPrice();
-  // }, []);
+  const getDescription = async (symbol: string): Promise<string> => {
+    const descriptionFromApi: string = await apiInstance.getCompanyDescription(
+      symbol
+    );
+    return descriptionFromApi;
+  };
 
   const handleSubmit = async (e: any): Promise<void> => {
     e.preventDefault();
     try {
+      //set symbol that matches api
+      setMatchedSymbol(inputSymbol);
+
+      //get price and set it
       const priceFromApi = await getPrice(inputSymbol);
       setPrice(priceFromApi);
 
-      // Symbol
-      // Description
-    } catch (err) {
-      if (err.response.status === 404) {
+      //get description and set it
+      const descriptionFromApi = await getDescription(inputSymbol);
+      setDescription(descriptionFromApi);
+    } catch (error) {
+      if (error.response.status === 404) {
         window.alert('not found this symbol');
       } else {
         window.alert('An error occured. Please try again.');
@@ -50,9 +56,9 @@ const App: React.FC = () => {
     <>
       <div className="app_container">
         <InputForm onChangeFunc={handleInput} onSubmitFunc={handleSubmit} />
-        <Symbol />
+        <Symbol propsSymbol={matchedSymbol} />
         <StockPrice propsPrice={price} />
-        <Description />
+        <Description propsDescription={description} />
       </div>
     </>
   );
