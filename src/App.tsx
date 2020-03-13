@@ -3,8 +3,8 @@ import InputForm from './components/InputForm';
 import Symbol from './components/Symbol';
 import StockPrice from './components/StockPrice';
 import Description from './components/Description';
+import Loading from './components/Loading';
 import api from './utils/Api';
-import { Row, Col } from 'antd';
 import './App.css';
 
 const App: React.FC = () => {
@@ -12,6 +12,7 @@ const App: React.FC = () => {
   const [matchedSymbol, setMatchedSymbol] = React.useState<string>('');
   const [price, setPrice] = React.useState<string>('');
   const [description, setDescription] = React.useState<string>('');
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const apiInstance = new api();
 
@@ -30,6 +31,9 @@ const App: React.FC = () => {
   const handleSubmit = async (e: any): Promise<void> => {
     e.preventDefault();
     try {
+      //start loading
+      setLoading(true);
+
       //get price and set it
       const priceFromApi = await getPrice(inputSymbol);
       const priceUSD = `${priceFromApi} USD`;
@@ -41,12 +45,19 @@ const App: React.FC = () => {
 
       //set symbol that matches api
       setMatchedSymbol(inputSymbol);
+
+      //stop loading
+      setLoading(false);
     } catch (error) {
+      //start loading
+      setLoading(true);
       if (error.response.status === 404) {
         window.alert('not found this symbol');
       } else {
         window.alert('An error occured. Please try again.');
       }
+      //stop loading
+      setLoading(false);
     }
   };
 
@@ -60,6 +71,8 @@ const App: React.FC = () => {
       <InputForm onChangeFunc={handleInput} onSubmitFunc={handleSubmit} />
       <br />
       <br />
+      {/* {loading ? <img src={loadingImg} alt="loading" /> : <></>} */}
+      <Loading loadingState={loading} />
 
       <Symbol propsSymbol={matchedSymbol} />
 
